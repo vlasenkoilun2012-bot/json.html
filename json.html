@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Илья Власенко | Python & Java Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            padding: 6px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: var(--light);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 95vh;
+            display: flex;
+            align-items: center;
+            padding-top: 70px;
+            position: relative;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .avatar {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            color: white;
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(45deg, var(--primary), #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero h2 {
+            font-size: 1.4rem;
+            color: var(--gray);
+            margin-bottom: 1.2rem;
+            font-weight: 400;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 1.8rem;
+            max-width: 500px;
+            color: #94a3b8;
+        }
+
+        .tagline {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(37, 99, 235, 0.15);
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            color: #60a5fa;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+        }
+
+        /* Skills Section */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--light);
+        }
+
+        .skill-card p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .project-card {
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .project-img {
+            height: 180px;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: var(--primary);
+        }
+
+        .project-content {
+            padding: 1.2rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        .project-content p {
+            color: #94a3b8;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.2rem;
+        }
+
+        .tech-tag {
+            background: rgba(124, 58, 237, 0.15);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #a78bfa;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-top: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .contact h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .contact p {
+            color: #94a3b8;
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+            font-size: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #cbd5e1;
+            font-size: 1rem;
+        }
+
+        .contact-icon {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .tg-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            background: #0088cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-top: 1rem;
+        }
+
+        .tg-btn:hover {
+            background: #0077b5;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 136, 204, 0.25);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            margin-top: 3rem;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+            
+            .avatar {
+                width: 220px;
+                height: 220px;
+                font-size: 4.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 2rem;
+                transition: var(--transition);
+                backdrop-filter: blur(10px);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .contact {
+                padding: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn, .tg-btn {
+                padding: 10px 22px;
+                font-size: 0.9rem;
+            }
+            
+            .avatar {
+                width: 180px;
+                height: 180px;
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Илья Власенко</div>
+                <div class="menu-btn" id="menuBtn">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="nav-links" id="navLinks">
+                    <a href="#home">Главная</a>
+                    <a href="#skills">Навыки</a>
+                    <a href="#projects">Проекты</a>
+                    <a href="#contact">Контакты</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="tagline">Python & Java Developer</span>
+                    <h1>Илья Власенко</h1>
+                    <h2>Разработчик и веб-дизайнер</h2>
+                    <p>Создаю backend-решения на Python и Java, совмещаю с чистым кодом и понятным дизайном. Упрощаю сложное.</p>
+                    <a href="#projects" class="btn">Смотреть проекты</a>
+                </div>
+                <div class="hero-image">
+                    <div class="avatar">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <div class="container">
+            <h2 class="section-title">Навыки</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3>Python</h3>
+                    <p>Backend на Flask, парсинг данных, автоматизация процессов, работа с API</p>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-java"></i>
+                    </div>
+                    <h3>Java</h3>
+                    <p>Консольные приложения, ООП, основы Spring, многопоточность</p>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Веб-разработка</h3>
+                    <p>HTML/CSS, адаптивная верстка, основы JavaScript, дизайн в Figma</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="container">
+            <h2 class="section-title">Проекты</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Сканер сайтов</h3>
+                        <p>Python утилита для проверки доступности веб-ресурсов. Асинхронные запросы, экспорт в CSV.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Asyncio</span>
+                            <span class="tech-tag">Aiohttp</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Telegram Бот</h3>
+                        <p>Бот для управления задачами с напоминаниями. SQLite база, вебхуки.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Telegram API</span>
+                            <span class="tech-tag">SQLite</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-folder-open"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Файловый менеджер</h3>
+                        <p>Консольное Java приложение для работы с файлами. Копирование, перемещение, поиск.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">OOP</span>
+                            <span class="tech-tag">NIO</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="contact">
+                <h2>Связаться со мной</h2>
+                <p>Ищу интересные задачи и проекты. Пишите в Telegram — отвечаю быстро.</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fab fa-telegram contact-icon"></i>
+                        <span>@holazcc</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone contact-icon"></i>
+                        <span>095 061 9478</span>
+                    </div>
+                </div>
+                
+                <a href="https://t.me/holazcc" class="tg-btn" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                    Написать в Telegram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Илья Власенко • Python & Java Developer</p>
+            <p>2024</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                if(targetId === '#contact') {
+                    // Для контактов не скроллим, сразу открываем Telegram
+                    if(this.getAttribute('href') === '#contact') {
+                        setTimeout(() => {
+                            window.location.href = 'https://t.me/holazcc';
+                        }, 100);
+                        return;
+                    }
+                }
+                
+                e.preventDefault();
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Telegram button direct link
+        document.querySelector('.tg-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open('https://t.me/holazcc', '_blank');
+        });
+        
+        // Scroll effect for header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if(window.scrollY > 30) {
+                header.style.background = 'rgba(15, 23, 42, 0.98)';
+                header.style.borderBottom = '1px solid rgba(255, 255, 255, 0.12)';
+            } else {
+                header.style.background = 'rgba(15, 23, 42, 0.95)';
+                header.style.borderBottom = '1px solid rgba(255, 255, 255, 0.08)';
+            }
+        });
+    </script>
+</body>
+</html>
